@@ -309,12 +309,12 @@ int access_disabled(const struct su_initiator *from) {
         if (data != NULL) {
             len = strlen(data);
             if (len >= PROPERTY_VALUE_MAX)
-                memcpy(enabled, "0", 2);
+                memcpy(enabled, "1", 2);
             else
                 memcpy(enabled, data, len + 1);
             free(data);
         } else
-            memcpy(enabled, "0", 2);
+            memcpy(enabled, "1", 2);
 
         /* enforce persist.sys.root_access on non-eng builds for apps */
         if (strcmp("eng", build_type) != 0 &&
