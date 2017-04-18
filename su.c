@@ -545,6 +545,12 @@ int su_main(int argc, char *argv[], int need_client) {
         allow(&ctx, NULL);
     }
 
+    // autogrant system apps
+    if (ctx.from.uid == 1000) {
+        ALOGD("Allowing system app.");
+        allow(&ctx, NULL);
+    }
+
     const char *packageName = resolve_package_name(ctx.from.uid);
     if (!appops_start_op_su(ctx.from.uid, packageName)) {
         ALOGD("Allowing via appops.");
